@@ -37,6 +37,16 @@ services:
         networks:
             - importer-network
 
+    redis:
+        image: redis:alpine
+        ports:
+            - "6379:6379"
+        networks:
+            - importer-network
+        volumes:
+            - redisdata:/data
+
+
 networks:
     importer-network:
 
@@ -44,4 +54,6 @@ volumes:
     dbdata:
         driver: local
     vendor:
+        driver: local
+    redisdata:
         driver: local

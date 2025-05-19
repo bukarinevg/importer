@@ -6,7 +6,14 @@ RUN apk update && apk add --no-cache \
     libzip-dev \
     zip \
     unzip \
-    openssl && \
+    openssl \
+    redis \
+    autoconf \
+    gcc \
+    g++ \
+    make && \
+    pecl install redis && \
+    docker-php-ext-enable redis && \
     docker-php-ext-install pdo_mysql zip gd
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
